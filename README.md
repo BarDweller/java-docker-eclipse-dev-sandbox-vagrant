@@ -8,9 +8,9 @@ Tools:
 - docker
 - docker-compose
 - Eclipse
- - Terminal plugin
- - Docker plugin
- - Java Development plugin
+  - Terminal plugin
+  - Docker plugin
+  - Java Development plugin
 - xauth
 
 `vagrant up`
