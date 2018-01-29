@@ -2,6 +2,7 @@
 A Vagrantfile to build a development sandbox image for java.
 
 Tools:
+- openjdk 8
 - git
 - maven, gradle, sbt
 - bx commands for IBM Cloud
