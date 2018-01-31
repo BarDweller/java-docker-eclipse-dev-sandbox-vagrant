@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     apt-get purge docker docker-engine docker.io
     echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
-    add-apt-repository ppa:webupd8team/atom
+    add-apt-repository -y ppa:webupd8team/atom
     apt-get update
     DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
     echo 'Installing Git,Sbt,Unzip,JDK & Curl'
