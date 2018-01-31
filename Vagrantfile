@@ -33,6 +33,8 @@ Vagrant.configure("2") do |config|
       xauth \
       atom \
       chromium-browser \
+      open-vm-tools \
+      open-vm-tools-desktop \
       openjdk-8-jdk
     echo 'Set up HTTPS repository'
     apt-get install -y \
