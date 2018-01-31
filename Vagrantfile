@@ -125,9 +125,14 @@ Vagrant.configure("2") do |config|
     # Download and build lagom chirper
     git clone https://github.com/BarDweller/lagom-java-chirper-example.git
     cd lagom-java-chirper-example
-    sbt -DbuildTarget=compose clean docker:publishLocal
-    cd
-
+    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    nvm install --lts
+    sbt -DbuildTarget=compose clean docker:publishLocal    
+    cd deploy/compose
+    docker-compose build proxy
+    docker-compose pull
     echo 'system is up, use vagrant ssh to access it.'
   EOT
 
