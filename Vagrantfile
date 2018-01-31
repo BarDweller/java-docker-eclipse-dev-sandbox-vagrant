@@ -125,7 +125,7 @@ Vagrant.configure("2") do |config|
     # Download and build lagom chirper
     git clone https://github.com/BarDweller/lagom-java-chirper-example.git
     cd lagom-java-chirper-example
-    ./sbt-build -DbuildTarget=compose clean docker:publishLocal
+    sbt -DbuildTarget=compose clean docker:publishLocal
     cd
 
     echo 'system is up, use vagrant ssh to access it.'
