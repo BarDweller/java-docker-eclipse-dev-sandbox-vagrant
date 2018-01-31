@@ -123,7 +123,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, privileged: false, run: "always", :inline => <<-EOT
 
     # Download and build lagom chirper
-    git clone https://github.com/lagom/lagom-java-chirper-example.git
+    git clone https://github.com/BarDweller/lagom-java-chirper-example.git
     cd lagom-java-chirper-example
     ./sbt-build -DbuildTarget=compose clean docker:publishLocal
     cd
