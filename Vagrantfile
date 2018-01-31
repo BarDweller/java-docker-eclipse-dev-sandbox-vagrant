@@ -20,7 +20,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => <<-EOT
     apt-get purge docker docker-engine docker.io
     echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+    add-apt-repository ppa:webupd8team/atom
     apt-get update
     DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
     echo 'Installing Git,Sbt,Unzip,JDK & Curl'
@@ -30,6 +31,8 @@ Vagrant.configure("2") do |config|
       sbt \
       unzip \
       xauth \
+      atom \
+      chromium-browser \
       openjdk-8-jdk
     echo 'Set up HTTPS repository'
     apt-get install -y \
@@ -118,6 +121,13 @@ Vagrant.configure("2") do |config|
 
   # Run as vagrant user: Always start things
   config.vm.provision :shell, privileged: false, run: "always", :inline => <<-EOT
+
+    # Download and build lagom chirper
+    git clone https://github.com/lagom/lagom-java-chirper-example.git
+    cd lagom-java-chirper-example
+    ./sbt-build -DbuildTarget=compose clean docker:publishLocal
+    cd
+
     echo 'system is up, use vagrant ssh to access it.'
   EOT
 
